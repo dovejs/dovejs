@@ -1,0 +1,16 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "commonjs": true,
+        "jest": true
+    },
+    "parser": "babel-eslint",
+    "extends": "standard",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-unused-vars": "warn"
+    }
+}

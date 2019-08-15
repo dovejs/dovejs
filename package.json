@@ -1,0 +1,44 @@
+{
+  "name": "dove",
+  "version": "0.1.0",
+  "description": "A simple framework for Node.js",
+  "main": "dest/index.js",
+  "scripts": {
+    "dev": "nodemon dev.js",
+    "start": "node dest/index.js",
+    "clean": "rm -rf ./dest",
+    "compile": "npm run clean && babel src --out-dir dest",
+    "build": "npm run lint && npm run compile",
+    "lint": "eslint src",
+    "lintfix": "eslint --fix src",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hot",
+    "dev",
+    "node"
+  ],
+  "author": "lanyue",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.1.0",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "reflect-metadata": "^0.1.13"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.5.5"
+  }
+}
