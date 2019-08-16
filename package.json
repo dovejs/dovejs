@@ -36,9 +36,12 @@
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
+    "koa": "^2.7.0",
+    "koa-router": "^7.4.0",
     "reflect-metadata": "^0.1.13"
   },
   "dependencies": {
-    "@babel/runtime": "^7.5.5"
+    "@babel/runtime": "^7.5.5",
+    "camelcase": "^5.3.1"
   }
 }
