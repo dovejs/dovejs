@@ -3,6 +3,7 @@ import Koa from 'koa'
 import Router from 'koa-router'
 import loaderController from './utils/loader-controller'
 import Controller from './controller'
+import { actionWrapper, pathJoin } from './utils'
 
 class Application extends Koa {
   constructor (options) {
@@ -12,7 +13,7 @@ class Application extends Koa {
     this.config.port = this.config.port || 4000
     this.router = null
     this.controllers = []
-    console.log(this.config)
+
     this.initialize()
   }
 
@@ -38,9 +39,11 @@ class Application extends Koa {
       }
 
       const key = paths.join('/')
+      const controllerName = paths[paths.length - 1].replace(/controller/i, '')
+      const actions = Object.getOwnPropertyNames(value.prototype)
+      const routerPerfix = Reflect.getMetadata('ROUTER_PERFIX', value)
 
       controllers[key] = value
-      const actions = Object.getOwnPropertyNames(value.prototype)
 
       for (const i in actions) {
         const action = actions[i]
@@ -49,17 +52,21 @@ class Application extends Koa {
 
         const route = Reflect.getMetadata(action, value.prototype)
 
-        console.log(action, route)
-        routes.push({ ...route, paths })
-        this.router.register(route.path, route.methods, (ctx) => {
-          ctx.body = route
-        })
+        if (!route) continue // 未使用methods装饰器的不做处理
+
+        // 定义了路由前缀
+        if (routerPerfix) {
+          route.path = pathJoin(routerPerfix, route.path)
+        }
+
+        routes.push({ ...route, paths, action, controller: controllerName })
+
+        this.router.register(route.path, route.methods, actionWrapper(value, action, this))
       }
     }
 
     this.controllers = controllers
     this.routes = routes
-    console.log(routes)
   }
 
   registerRouter () {
