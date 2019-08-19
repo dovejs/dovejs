@@ -1,5 +1,5 @@
 {
-  "name": "dove",
+  "name": "dovejs",
   "version": "0.1.0",
   "description": "A simple framework for Node.js",
   "main": "dest/index.js",
