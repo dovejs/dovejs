@@ -47,13 +47,13 @@ export const actionWrapper = (Controller, action, app) => {
   return async function (ctx, next) {
     try {
       const controller = new Controller(app, ctx)
-      await controller[action](controller, [
-        {
-          query: ctx.query,
-          params: ctx.params,
-          body: ctx.body
-        }
-      ])
+      const params = {
+        query: ctx.query,
+        params: ctx.params,
+        body: ctx.body
+      }
+
+      await controller[action](params, next)
     } catch (err) {
       app.emit('error', err, ctx)
     }
