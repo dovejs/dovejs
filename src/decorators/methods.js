@@ -2,7 +2,13 @@
 
 export const method = (methods, path, name) => {
   return function (target, key) {
-    const route = { methods: methods.toLocaleUpperCase().split(','), path, name }
+    const route = {
+      methods: Array.isArray(methods)
+        ? methods.map(e => e.toLocaleUpperCase())
+        : methods.split(',').map(e => e.toLocaleUpperCase()),
+      path,
+      name
+    }
     Reflect.defineMetadata(key, route, target)
   }
 }
