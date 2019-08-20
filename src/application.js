@@ -16,6 +16,8 @@ class Application extends Koa {
   constructor (options) {
     super()
 
+    if (typeof options !== 'object') throw new Error('options must be an object')
+
     this.config = options.config
     this.config.port = this.config.port || 4000
     this.router = null
@@ -29,8 +31,8 @@ class Application extends Koa {
   initialize () {
     this.initMiddlewares()
 
-    const perfix = (this.config.router && this.config.router.perfix) || '/'
-    this.router = new Router({ prefix: perfix })
+    const perfix = (this.config.router && this.config.router.perfix)
+    this.router = new Router(perfix && { prefix: perfix })
     this.loaderController()
     this.registerRouter()
   }
