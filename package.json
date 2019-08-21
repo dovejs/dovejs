@@ -29,6 +29,7 @@
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
+    "@types/koa": "^2.0.49",
     "babel-eslint": "^10.0.2",
     "eslint": "^6.1.0",
     "eslint-config-standard": "^13.0.1",
