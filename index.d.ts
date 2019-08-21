@@ -8,11 +8,11 @@ interface AppConifg {
   };
   controller: {
     dir: string
-  }
+  };
 }
 
 interface Options {
-  config: AppConifg
+  config: AppConifg;
 }
 
 declare class Dove extends Koa {
@@ -22,20 +22,23 @@ declare class Dove extends Koa {
   start(cb: () => void): void;
 }
 
-// interface ActionParams {
-//   query: { [key: string]: any };
-//   body: { [key: string]: any };
-//   params: { [key: string]: any };
-// }
+interface ActionParams {
+  query: { [key: string]: string };
+  body: { [key: string]: any };
+  params: { [key: string]: any };
+}
+
+// type Action = (data: ActionParams) => Promise<any>
 
 declare class Controller {
   constructor(app: Dove, ctx: Koa.Context);
   app: Dove;
   context: Koa.Context;
   body: any;
+  // [key: string]: Dove | Koa.Context | Action | any;
 }
 
-type methodDecorator = (target, key) => void
+type methodDecorator = (target: any, key: string) => void
 type methodType = 'GET' | 'POST' | 'PUT' | 'DEL' | 'ALL' | 'OPTIONS'
 
 declare const Decorators: {
@@ -50,7 +53,11 @@ declare const Decorators: {
   }
 }
 
-// declare namespace Dove {}
+declare namespace Dove {
+  // 定义 Dove.Context 声明
+  type Context = Koa.Context
+  type ActionOptions = ActionParams
+}
 
 export {
   Dove as default,
