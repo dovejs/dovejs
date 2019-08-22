@@ -29,6 +29,18 @@ export const del = (path, name) => {
   return method('DELETE', path, name)
 }
 
+export const head = (path, name) => {
+  return method('HEAD', path, name)
+}
+
+export const patch = (path, name) => {
+  return method('PATCH', path, name)
+}
+
+export const options = (path, name) => {
+  return method('OPTIONS', path, name)
+}
+
 export const all = (path, name) => {
   return method('ALL', path, name)
 }

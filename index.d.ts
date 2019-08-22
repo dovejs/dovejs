@@ -39,7 +39,7 @@ declare class Controller {
 }
 
 type methodDecorator = (target: any, key: string) => void
-type methodType = 'GET' | 'POST' | 'PUT' | 'DEL' | 'ALL' | 'OPTIONS'
+type methodType = 'GET' | 'POST' | 'PUT' | 'DEL' | 'PATCH' | 'HEAD' | 'OPTIONS' | 'ALL'
 
 declare const Decorators: {
   perfix: (perfix: string | '') => () => void;
@@ -49,6 +49,9 @@ declare const Decorators: {
     post: (path: string, name?: string) => methodDecorator;
     put: (path: string, name?: string) => methodDecorator;
     del: (path: string, name?: string) => methodDecorator;
+    head: (path: string, name?: string) => methodDecorator;
+    patch: (path: string, name?: string) => methodDecorator;
+    options: (path: string, name?: string) => methodDecorator;
     all: (path: string, name?: string) => methodDecorator;
   }
 }
