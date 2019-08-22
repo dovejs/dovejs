@@ -15,17 +15,26 @@ interface Options {
   config: AppConifg;
 }
 
+interface routesType {
+  methods: methodType[];
+  path: string;
+  name?: string;
+  paths: string[];
+  action: string;
+  controller: string;
+}
+
 declare class Dove extends Koa {
   constructor(options: Options);
   config: AppConifg;
-  routes: any[];
+  routes: routesType[];
   start(cb: () => void): void;
 }
 
 interface ActionParams {
   query: { [key: string]: string };
-  body: { [key: string]: any };
-  params: { [key: string]: any };
+  body: { [key: string]: any }; // application/json 可以传any类型
+  params: { [key: string]: string };
 }
 
 // type Action = (data: ActionParams) => Promise<any>

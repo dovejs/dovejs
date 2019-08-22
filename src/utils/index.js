@@ -50,7 +50,7 @@ export const actionWrapper = (Controller, action, app) => {
       const params = {
         query: ctx.query,
         params: ctx.params,
-        body: ctx.body
+        body: ctx.request.body
       }
 
       await controller[action](params, next)
