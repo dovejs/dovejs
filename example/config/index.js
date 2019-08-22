@@ -1,10 +1,14 @@
 import path from 'path'
+import demo from '../middleware/demo'
 
 export default {
   controller: {
     dir: path.resolve(__dirname, '../app/controller')
   },
   router: {
-    perfix: '/api'
-  }
+    // perfix: '/api'
+  },
+  middleware: [
+    demo
+  ]
 }
